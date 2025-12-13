@@ -3,9 +3,6 @@
     "description": "project akhir pbp kelompok 6",
     "type": "project",
     "autoload": {
-        "files": [
-            "src/App/assets.php"
-        ],
         "psr-4": {
             "Mvcomp\\": "/",
             "Mvcomp\\Posapp\\": "src/"

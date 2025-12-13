@@ -1,5 +1,6 @@
 <?php
 namespace Mvcomp\Posapp\App;
+session_start();
 
 class Route{
 
