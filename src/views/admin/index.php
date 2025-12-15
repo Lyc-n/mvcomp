@@ -9,19 +9,43 @@
         </div>
         <div class="">
             <ul class="flex flex-col gap-3 overflow-hidden">
-                <li><button type="button" hx-target="#menuInti" data-menu="dashboard" hx-post="/mvcomp/admin/panel/dashboard" class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3 bg-v7 text-v2">
+                <li><button
+                        hx-post="/mvcomp/admin/panel"
+                        hx-target="#menuInti"
+                        hx-vals='{"id": "dashboard"}'
+                        data-menu="dashboard"
+                        type="button"
+                        class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3 bg-v7 text-v2 transform active:scale-95 active:shadow-inner">
                         <i class="ph-fill ph-squares-four text-xl"></i>
                         <p class="w-full text-left text-sm">Dashboard</p>
                     </button></li>
-                <li><button type="button" hx-target="#menuInti" data-menu="users" hx-post="/mvcomp/admin/panel/users" class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3">
+                <li><button
+                        type="button"
+                        hx-target="#menuInti"
+                        data-menu="users"
+                        hx-post="/mvcomp/admin/panel"
+                        hx-vals='{"id": "users"}'
+                        class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3 transform active:scale-95 active:shadow-inner">
                         <i class="ph-fill ph-users text-xl"></i>
                         <p class="w-full text-left text-sm">Manage Users</p>
                     </button></li>
-                <li><button type="button" hx-target="#menuInti" data-menu="products" hx-post="/mvcomp/admin/panel/products" class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3">
+                <li><button
+                        type="button"
+                        hx-target="#menuInti"
+                        data-menu="products"
+                        hx-post="/mvcomp/admin/panel"
+                        hx-vals='{"id": "products"}'
+                        class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3 transform active:scale-95 active:shadow-inner">
                         <i class="ph-fill ph-bowl-steam text-xl"></i>
                         <p class="w-full text-left text-sm">Manage Products</p>
                     </button></li>
-                <li><button type="button" hx-target="#menuInti" data-menu="reports" hx-post="/mvcomp/admin/panel/reports" class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3">
+                <li><button
+                        type="button"
+                        hx-target="#menuInti"
+                        data-menu="reports"
+                        hx-post="/mvcomp/admin/panel"
+                        hx-vals='{"id": "reports"}'
+                        class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3 transform active:scale-95 active:shadow-inner">
                         <i class="ph-fill ph-toolbox text-xl"></i>
                         <p class="w-full text-left text-sm">Monthly Reports</p>
                     </button></li>
@@ -34,10 +58,10 @@
                 <h2 class="font-semibold text-md leading-3.5">Guest</h2>
                 <p class="font-light text-xs opacity-75 ml-0.5">admin</p>
             </div>
-            <div id="profile" class="aspect-square cursor-pointer h-full bg-[url(../img/samplePP.jpg)] bg-cover bg-center bg-no-repeat rounded-full shadow-md"></div>   
+            <div id="profile" class="aspect-square cursor-pointer h-full bg-[url(../img/samplePP.jpg)] bg-cover bg-center bg-no-repeat rounded-full shadow-md"></div>
         </nav>
-        <div id="menuInti" class="flex w-full h-full bg-v5">
-            
+        <div id="menuInti" class="flex w-full h-full bg-linear-to-br/oklch from-v5 from-60% to-v6 flex-col overflow-hidden">
+
         </div>
     </main>
 </div>

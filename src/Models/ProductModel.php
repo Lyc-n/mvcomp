@@ -24,9 +24,9 @@ class ProductModel
             id INT(11) AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(100) NOT NULL,
             description TEXT,
-            price DECIMAL(10, 2) NOT NULL,
-            category ENUM('Makanan', 'Minuman', 'Cemilan') NOT NULL,
-            stock INT(11) NOT NULL,
+            price DECIMAL(10, 3) NOT NULL,
+            category ENUM('makanan', 'minuman', 'kudapan') NOT NULL,
+            stock INT(11),
             image VARCHAR(255),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=INNODB;";
@@ -52,6 +52,15 @@ class ProductModel
         $stmt->execute();
         $product = $stmt->fetch();
         return $product ?: null;
+    }
+
+    public function getProductByText($txt): array
+    {
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE name LIKE ? OR category LIKE ?");
+        $like = "%{$txt}%";
+        $stmt->execute([$like, $like]);
+        $user = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $user;
     }
 
     public function createProduct(array $data): bool

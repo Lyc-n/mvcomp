@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Sistem Kasir Digital</title>
+  <script src="./https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./style_daftar_menu.css" />
+</head>
+
+<body>
+  <div class="app mx-auto max-w-[420px]">
+    <header class="header">
+      <button class="menu-btn">☰</button>
+      <h2 class="table-title">Meja 6</h2>
+    </header>
+
+    <div class="search-box">
+<h3 class="section-title">Status Order</h3>
+<div id="orderStatuslist" class="order-status-list"></div>
+  <input id="searchInput" type="text" placeholder="cari" />
+  <span class="search-icon">🔍</span>
+</div>
+
+
+    <h3 class="section-title">Daftar Menu</h3>
+
+    <div class="category-tabs">
+      <button class="tab active" data-target="makanan">Makanan</button>
+      <button class="tab" data-target="minuman">Minuman</button>
+      <button class="tab" data-target="kudapan">Kudapan</button>
+    </div>
+
+    <!-- KATEGORI MAKANAN -->
+    <div class="product-grid category" id="makanan">
+      <div class="card">
+        <div class="card-image"><img src="./download (5).jpg" alt="Mie Ayam"></div>
+        <div class="card-body">
+          <h4>Mie Ayam</h4><p>Rp. 13.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./Soto Banjar.jpg" alt="Soto Banjar"></div>
+        <div class="card-body">
+          <h4>Soto Banjar</h4><p>Rp. 15.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./Rawon.jpg" alt="Rawon"></div>
+        <div class="card-body">
+          <h4>Rawon</h4><p>Rp. 22.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./Nasi tongseng daging.jpg" alt="Nasi tongseng daging"></div>
+        <div class="card-body">
+          <h4>Nasi Tongseng Daging</h4><p>Rp. 24.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./Nasi ayam bakar rica.jpg" alt="Nasi ayam bakar rica"></div>
+        <div class="card-body">
+          <h4>Nasi Ayam Bakar Rica</h4><p>Rp. 18.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./Nasi pecel.jpg" alt="Nasi Pecel"></div>
+        <div class="card-body">
+          <h4>Nasi Pecel</h4><p>Rp. 11.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- KATEGORI MINUMAN -->
+    <div class="product-grid category hidden" id="minuman">
+      <div class="card">
+        <div class="card-image"><img src="./es teh.jpg" alt="Es Teh"></div>
+        <div class="card-body">
+          <h4>Es Teh</h4><p>Rp. 5.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./Thai Iced Tea (Sweet, Spiced & Creamy).jpg" alt="Thai tea ice"></div>
+        <div class="card-body">
+          <h4>Thai Tea Ice</h4><p>Rp. 10.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./es  kopyor.jpg" alt="Es Kopyor"></div>
+        <div class="card-body">
+          <h4>Es Kopyor</h4><p>Rp. 5.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./es dawet.jpg" alt="Es Dawet"></div>
+        <div class="card-body">
+          <h4>Es Dawet</h4><p>Rp. 8.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./es teler.jpg" alt="Es Teler"></div>
+        <div class="card-body">
+          <h4>Es Teler</h4><p>Rp. 20.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./kopi susu tubruk.jpg" alt="Kopi Susu Tubruk"></div>
+        <div class="card-body">
+          <h4>Kopi Susu Tubruk</h4><p>Rp. 6.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- KATEGORI KUDAPAN -->
+    <div class="product-grid category hidden" id="kudapan">
+      <div class="card">
+        <div class="card-image"><img src="./Keledek & Pisang Goreng.jpg" alt="Pisang Goreng"></div>
+        <div class="card-body">
+          <h4>Pisang Goreng</h4><p>Rp. 5.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./Klepon.jpg" alt="Klepon"></div>
+        <div class="card-body">
+          <h4>Klepon</h4><p>Rp. 1.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./Kue Cucur.jpg" alt="Kue Cucur"></div>
+        <div class="card-body">
+          <h4>Kue Cucur</h4><p>Rp. 3.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./Kuih Bakar Pandan.jpg" alt="Kuih Bakar Pandan"></div>
+        <div class="card-body">
+          <h4>Kuih Bakar Pandan</h4><p>Rp. 4.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./roti jala.jpg" alt="Roti Jala"></div>
+        <div class="card-body">
+          <h4>Roti Jala</h4><p>Rp. 15.000</p><button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./putu ayu.jpg" alt="Roti Jala"></div>
+        <div class="card-body">
+          <h4> Putu Ayu</h4>
+          <p>Rp. 4.000</p>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image"><img src="./pempek.jpg" alt="Pempek"></div>
+        <div class="card-body">
+          <h4> Pempek</h4>
+          <p>Rp. 22.000</p>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="./Bahulu Cermai.jpg" alt="Bahulu"></div>
+        <div class="card-body">
+          <h4> Kue Bahulu</h4>
+          <p>Rp. 2.000</p>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+    <!---Detail Manu-->
+    <div id="menuDetail" class="menu-modal hidden">
+      <div class="menu-modal-content">
+      <h3 class="modal-title"> Detail Menu</h3>
+      <img id="detailImage" src="./Nasi pecel.jpg" alt="Detail Gambar" class="modal-image">
+      <h4 id="detailTitle" class="modal-name"></h4>
+      <p id="detailDesc" class="modal-desc"></p>
+      <p id="detailPrice" class="modal-price"></p>
+      <button class="btn-order">Pesan</button>
+      <button class="btn-close">✕</button>
+      </div>
+    </div>
+
+    <!---Keranjang-->
+    <div id="cartModal" class="menu-modal hidden">
+      <div class="menu-modal-content">
+        <h3 class="modal-title"> Keranjang</h3>
+        <div id="cartItems" class="cart-items"></div>
+
+        <div class="cart-summary">
+          <p> Subtotal <span id="subtotal">Rp.0</span></p>
+          <p>Diskon <span id="discount">-</span></p><hr/>
+          <p class="total"><strong>Total</strong><span id="total"> Rp.0</span></p><button class="btn-order" id="btnBayar">Bayar</button>
+        </div>
+        <button class="btn-close">✕</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="bottom-bar">
+    <button class="btn-cart">Keranjang</button>
+    <button class="btn-pay">Bayar</button>
+  </footer>
+
+  <script src="./script_menu.js"></script>
+</body>
+</html>

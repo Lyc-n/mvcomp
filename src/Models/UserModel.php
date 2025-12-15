@@ -25,7 +25,8 @@ class UserModel
             username VARCHAR(50) NOT NULL,
             email VARCHAR(100) NOT NULL,
             password VARCHAR(255) NOT NULL,
-            role ENUM('admin', 'kasir', 'member', 'guest') DEFAULT 'guest',
+            role ENUM('admin', 'kasir', 'member', 'guest'),
+            image VARCHAR(255),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=INNODB;";
         $this->db->exec($sql);
@@ -58,20 +59,42 @@ class UserModel
         return $user ?: null;
     }
 
+    public function getUserByText($txt): array
+    {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username LIKE ? OR email LIKE ?");
+        $like = "%{$txt}%";
+        $stmt->execute([$like, $like]);
+        $user = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $user;
+    }
+
+    public function getUserByRole($txt): array
+    {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE role LIKE ?");
+        $like = "%{$txt}%";
+        $stmt->execute([$like]);
+        $user = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $user;
+    }
+
     public function createUser(array $data): bool
     {
-        $stmt = $this->db->prepare("INSERT INTO user (username, email, password) VALUES (:username, :email, :password)");
+        $stmt = $this->db->prepare("INSERT INTO users (username, email, password, role) VALUES (:username, :email, :password, :role)");
+        $hashPassword = password_hash($data['password'], PASSWORD_BCRYPT);
         $stmt->bindParam(':username', $data['username']);
         $stmt->bindParam(':email', $data['email']);
-        $stmt->bindParam(':password', password_hash($data['password'], PASSWORD_BCRYPT));
+        $stmt->bindParam(':password', $hashPassword);
+        $stmt->bindParam(':role', $data['role']);
         return $stmt->execute();
     }
 
     public function updateUser(int $id, array $data): bool
     {
-        $stmt = $this->db->prepare("UPDATE users SET username = :username, email = :email WHERE id = :id");
+        $stmt = $this->db->prepare("UPDATE users SET username = :username, email = :email, password = :password, role = :role WHERE id = :id");
         $stmt->bindParam(':username', $data['username']);
         $stmt->bindParam(':email', $data['email']);
+        $stmt->bindParam(':password', $data['password']);
+        $stmt->bindParam(':role', $data['role']);
         $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
         return $stmt->execute();
     }
@@ -79,7 +102,7 @@ class UserModel
     public function deleteUser(int $id): bool
     {
         $stmt = $this->db->prepare("DELETE FROM users WHERE id = :id");
-        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
         return $stmt->execute();
     }
 }
