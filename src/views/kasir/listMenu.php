@@ -16,14 +16,14 @@
             <h4 class="line-clamp-1"><?= htmlspecialchars($menu['name']) ?></h4>
             <p class="text-sm font-medium">Rp. <?= number_format($menu['price'], 0, ',', '.') ?></p>
             <button
-                onclick="event.stopPropagation()"
                 class="absolute bottom-3 right-3
                         w-8 h-8 rounded-full
                         bg-white
                         shadow-sm/60
                         text-xl font-bold
                         flex items-center justify-center
-                        active:scale-95 transition">
+                        active:scale-95 transition"
+                onclick="event.stopPropagation()">
                 +
             </button>
         </div>

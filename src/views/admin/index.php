@@ -46,8 +46,8 @@
                         hx-post="/mvcomp/admin/panel"
                         hx-vals='{"id": "reports"}'
                         class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3 transform active:scale-95 active:shadow-inner">
-                        <i class="ph-fill ph-toolbox text-xl"></i>
-                        <p class="w-full text-left text-sm">Monthly Reports</p>
+                        <i class="ph-fill ph-qr-code text-xl"></i>
+                        <p class="w-full text-left text-sm">QR</p>
                     </button></li>
             </ul>
         </div>

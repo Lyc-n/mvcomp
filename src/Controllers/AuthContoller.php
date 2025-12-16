@@ -45,9 +45,71 @@ class AuthContoller extends BaseController
                 $success = $model->createUser($data);
                 echo $success ? 'User berhasil dibuat' : 'Gagal membuat user';
 
+                header('location: /mvcomp/auth/login');
+                exit;
+            case isset($_POST['login']):
+                $data = [
+                    'username' => trim($_POST['username'] ?? ''),
+                    'password' => $_POST['password'] ?? '',
+                    'email'    => trim($_POST['username'] ?? ''),
+                    'role'     => 'guest',
+                ];
+
+                if (!$data['username'] || !$data['email'] || !$data['password']) {
+                    http_response_code(422);
+                    echo 'Data tidak lengkap';
+                    exit;
+                }
+
+                $user = $model->findByUsernameOrEmail($data['username']);
+
+                if (!$user || !password_verify($data['password'], $user['password'])) {
+                    http_response_code(401);
+                    exit('Username atau password salah');
+                }
+
+                session_regenerate_id(true);
+
+                $_SESSION['user'] = [
+                    'id' => $user['id'],
+                    'username' => $user['username'],
+                    'role' => $user['role'],
+                    'permissions' => []
+                ];
+
                 header('location: /mvcomp/');
                 exit;
             default:
         }
+    }
+
+    public function logout()
+    {
+        // Pastikan session aktif
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            // Hapus semua data session
+            $_SESSION = [];
+
+            // Hapus cookie session (penting)
+            if (ini_get('session.use_cookies')) {
+                $params = session_get_cookie_params();
+                setcookie(
+                    session_name(),
+                    '',
+                    time() - 42000,
+                    $params['path'],
+                    $params['domain'],
+                    $params['secure'],
+                    $params['httponly']
+                );
+            }
+
+            // Hancurkan session
+            session_destroy();
+        }
+
+        // Redirect ke halaman login
+        header('Location: /mvcomp/auth/login');
+        exit;
     }
 }

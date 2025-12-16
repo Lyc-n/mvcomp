@@ -1,1 +1,1 @@
-<p>ini report</p>
+<p>ini qr</p>

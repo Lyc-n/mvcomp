@@ -18,12 +18,12 @@
         <!-- Username -->
         <div class="flex flex-col gap-4">
             <input
-                id="username"
+                name="username"
                 type="text"
                 placeholder="Username or Email"
                 class="w-full border bg-v5 border-v3/40 py-2 pr-4 pl-4 rounded-xl text-sm focus:ring focus:ring-v3/40 focus:outline-0">
             <input
-                id="password"
+                name="password"
                 type="password"
                 placeholder="Password"
                 class="w-full border bg-v5 border-v3/40 py-2 pr-4 pl-4 rounded-xl text-sm focus:ring focus:ring-v3/40 focus:outline-0">

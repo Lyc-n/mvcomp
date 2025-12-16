@@ -68,6 +68,22 @@ class UserModel
         return $user;
     }
 
+    public function findByUsernameOrEmail(string $identity): ?array
+    {
+        $stmt = $this->db->prepare(
+            "SELECT id, username, email, password, role FROM users WHERE username = :username OR email = :email LIMIT 1"
+        );
+
+        $stmt->bindValue(':username', $identity, \PDO::PARAM_STR);
+        $stmt->bindValue(':email', $identity, \PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC) ?: null;
+    }
+
+
+
     public function getUserByRole($txt): array
     {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE role LIKE ?");

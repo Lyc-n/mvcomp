@@ -25,3 +25,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (btn) btn.click();
 });
+
+//sidebar
+const toggleBtn = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.add('open');
+        overlay.classList.remove('hidden');
+    });
+
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.add('hidden');
+    });

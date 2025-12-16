@@ -1,9 +1,8 @@
 <?php
 
 namespace Mvcomp\Posapp\App;
-use Mvcomp\Posapp\App\Middleware;
 
-session_start();
+use Mvcomp\Posapp\App\Middleware;
 
 class Route
 {
@@ -34,19 +33,9 @@ class Route
 
         foreach (self::$routes as $route) {
             if ($route['path'] === $path && $route['method'] === $method) {
-
                 foreach ($route['middlewares'] as $middleware) {
                     Middleware::handle($middleware);
                 }
-
-                $controller = new $route['controller']();
-                $function = $route['function'];
-                return $controller->$function($_GET);
-            }
-        }
-
-        foreach (self::$routes as $route) {
-            if ($route['path'] === $path && $route['method'] === $method) {
                 $controller = new $route['controller']();
                 $function = $route['function'];
                 $params = $_GET;

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/App/Config.php';
@@ -8,6 +9,7 @@ use Mvcomp\Posapp\Controllers\AdminController;
 use Mvcomp\Posapp\Controllers\AuthContoller;
 use Mvcomp\Posapp\Controllers\HomeControlller;
 use Mvcomp\Posapp\Controllers\KasirController;
+
 
 //Home Route
 Route::add("GET", "/", HomeControlller::class, 'index');
@@ -25,6 +27,7 @@ Route::add("POST", "/admin/add/product", AdminController::class, "adminCRUDProdu
 //Authentication
 Route::add("GET", "/auth/login", AuthContoller::class, "login");
 Route::add("GET", "/auth/register", AuthContoller::class, "register");
+Route::add("GET", "/auth/logout", AuthContoller::class, "logout", ['auth']);
 Route::add("POST", "/auth/crud", AuthContoller::class, "CRUD");
 
 //Kasir Route

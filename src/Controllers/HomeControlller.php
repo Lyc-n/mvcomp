@@ -54,6 +54,16 @@ class HomeControlller extends BaseController
                 include __DIR__ . '/../views/home/listMenu.php';
                 exit;
 
+            case isset($_POST['id']):
+                $id = (int) ($_POST['id'] ?? 0);
+                if ($id <= 0) {
+                    http_response_code(400);
+                    exit;
+                }
+                $detailMenu = $modelP->getProductById($id);
+                include __DIR__ . '/../views/home/detail.php';
+                exit;
+
             default:
                 $menus = $modelP->getAllProducts();
                 include __DIR__ . '/../views/home/listMenu.php';
