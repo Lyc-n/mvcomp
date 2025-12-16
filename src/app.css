@@ -2,13 +2,58 @@
 @import "tailwindcss";
 
 @theme {
-    --font-inter: "Inter", sans-serif;
-    --font-abhaya: "Abhaya Libre", serif;
-    --color-v1: oklch(78.74% 0.172 69.12);
-    --color-v2: oklch(62.80% 0.258 29.23);
-    --color-v3: oklch(31.59% 0.050 278.43);
-    --color-v4: oklch(98.13% 0.010 238.51);
-    --color-v5: oklch(97.81% 0.023 84.59);
-    --color-v6: oklch(88.13% 0.114 80.63);
-    --color-v7: oklch(84.58% 0.144 78.57);
+  --font-inter: "Inter", sans-serif;
+  --font-abhaya: "Abhaya Libre", serif;
+  --color-v1: oklch(78.74% 0.172 69.12);
+  --color-v2: oklch(62.8% 0.258 29.23);
+  --color-v3: oklch(31.59% 0.05 278.43);
+  --color-v4: oklch(98.13% 0.01 238.51);
+  --color-v5: oklch(97.81% 0.023 84.59);
+  --color-v6: oklch(88.13% 0.114 80.63);
+  --color-v7: oklch(84.58% 0.144 78.57);
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .font-abhaya-black {
+    font-family: var(--font-abhaya);
+    font-weight: 800;
+  }
+}
+
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.animate-slideFade {
+  animation: slideFade 0.9s ease;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
 }
