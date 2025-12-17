@@ -20,25 +20,23 @@
 
             <!-- NAV -->
             <nav class="mt-1.5">
-                <!-- LOGIN -->
                 <a
                     id="navLogin"
-                    href=""
-                    class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= isset($_SESSION['user']) ? 'hidden' : '' ?>">
+                    href="/mvcomp/kasir/pesanan"
+                    class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= isset($_SESSION['user']) ? '' : 'hidden' ?>">
                     <span>Pesanan</span>
                 </a>
 
-                <div class="h-px w-full bg-white/60 mb-1.5 <?= isset($_SESSION['user']) ? 'hidden' : '' ?>"></div>
+                <div class="h-px w-full bg-white/60 mb-1.5 <?= isset($_SESSION['user']) ? '' : 'hidden' ?>"></div>
 
-                <!-- REGISTER -->
                 <a
                     id="navRegister"
                     href=""
-                    class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= isset($_SESSION['user']) ? 'hidden' : '' ?>">
+                    class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= isset($_SESSION['user']) ? '' : 'hidden' ?>">
                     <span>Riwayat</span>
                 </a>
 
-                <div class="h-px w-full bg-white/60 mb-1.5 <?= isset($_SESSION['user']) ? 'hidden' : '' ?>"></div>
+                <div class="h-px w-full bg-white/60 mb-1.5 <?= isset($_SESSION['user']) ? '' : 'hidden' ?>"></div>
 
                 <!-- Logout -->
                 <a
@@ -81,8 +79,9 @@
             <div
                 id="menu"
                 class="mt-2.5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-10">
-                <?php include __DIR__ . '/listMenu.php';
+                <?php include __DIR__ . '/../home/listMenu.php';
                 ?>
+                <div id="cookie" class="hidden"></div>
             </div>
             <div
                 id="detailMenu"
@@ -108,31 +107,14 @@
             z-90 p-[18px]
             shadow-[8px_0_20px_rgba(0,0,0,0.2)]">
 
-        <!-- TOP -->
-        <div class="pt-2.5 px-1 pb-[18px]">
-            <div class="text-white font-semibold text-base">
-                Meja 6
-            </div>
-        </div>
-
         <!-- NAV -->
         <nav class="mt-1.5">
 
             <!-- ITEM -->
-            <button
-                id="pesanan"
-                type="button"
-                class="w-full text-left bg-transparent border-0 text-v3 py-3 px-1.5 text-xl font-bold cursor-pointer">
-                Pesanan
-            </button>
-
-            <button
-                id="total"
-                type="button"
-                class="w-full text-left bg-transparent border-0 text-v3 py-3 px-1.5 text-sm cursor-pointer">
-                Total
-            </button>
-            <button hx-post="/mvcomp/" hx-target="#menu" hx-vals='{"id": "bayar"}' name="actionMenu" type="button" class="w-full text-base bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 px-8 py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">bayar</button>
+            <div id="cart">
+                <?php include __DIR__ . '/cart.php'  ?>
+            </div>
         </nav>
+        <button  name="actionMenu" type="button" class="w-full my-5 text-base bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 px-8 py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">bayar</button>
     </aside>
-</div>
+</div>hx-post="/mvcomp/kasir" hx-target="#menu" hx-vals='{"bayar": 1 }'

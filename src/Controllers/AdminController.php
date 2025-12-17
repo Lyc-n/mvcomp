@@ -10,6 +10,9 @@ class AdminController extends BaseController
 {
     public function adminPanel()
     {
+        if ($_SESSION['user']['role'] != 'admin') {
+            header('location: /mvcomp/');
+        }
         $data = ['title' => 'Admin Panel'];
         $this->render('admin/index', $data);
     }

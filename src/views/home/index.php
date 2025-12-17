@@ -13,8 +13,13 @@
 
             <!-- TOP -->
             <div class="pt-2.5 px-1 pb-[18px]">
+                <div class="text-white font-semibold text-2xl">
+                    <?= ($_SESSION['user']['username'] == 'guest') ? 'hidden' : $_SESSION['user']['username'] ?>
+                </div>
+            </div>
+            <div class="pt-2.5 px-1 pb-[18px]">
                 <div class="text-white font-semibold text-base">
-                    Meja 6
+                    Meja <?= isset($param) ? $param : 0 ?>
                 </div>
             </div>
 
@@ -22,7 +27,7 @@
             <nav class="mt-1.5">
 
                 <!-- ITEM -->
-                <button
+                <button onclick="const p = document.getElementById('cart'); p.classList.remove('hidden'); p.classList.add('flex');" hx-post="/mvcomp/" hx-target="#cart" hx-vals='{"idCheck": "keranjang"}'
                     id="navKeranjang"
                     type="button"
                     class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer">
@@ -44,34 +49,34 @@
                 <a
                     id="navLogin"
                     href="/mvcomp/auth/login"
-                    class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= isset($_SESSION['user']) ? 'hidden' : '' ?>">
+                    class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= ($_SESSION['user']['role'] != 'guest') ? 'hidden' : '' ?>">
                     <i class="ph-bold ph-sign-in text-lg"></i>
                     <span>Login</span>
                 </a>
 
-                <div class="h-px w-full bg-white/60 mb-1.5 <?= isset($_SESSION['user']) ? 'hidden' : '' ?>"></div>
+                <div class="h-px w-full bg-white/60 mb-1.5 <?= ($_SESSION['user']['role'] != 'guest') ? 'hidden' : '' ?>"></div>
 
                 <!-- REGISTER -->
                 <a
                     id="navRegister"
                     href="/mvcomp/auth/register"
-                    class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= isset($_SESSION['user']) ? 'hidden' : '' ?>">
+                    class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= ($_SESSION['user']['role'] != 'guest') ? 'hidden' : '' ?>">
                     <i class="ph-bold ph-sign-in text-lg"></i>
                     <span>Register</span>
                 </a>
 
-                <div class="h-px w-full bg-white/60 mb-1.5 <?= isset($_SESSION['user']) ? 'hidden' : '' ?>"></div>
+                <div class="h-px w-full bg-white/60 mb-1.5 <?= ($_SESSION['user']['role'] != 'guest') ? 'hidden' : '' ?>"></div>
 
                 <!-- Logout -->
                 <a
                     id="navLogout"
                     href="/mvcomp/auth/logout"
-                    class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= isset($_SESSION['user']) ? '' : 'hidden' ?>">
+                    class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= ($_SESSION['user']['role'] == 'guest') ? 'hidden' : '' ?>">
                     <i class="ph-bold ph-sign-in text-lg"></i>
                     <span>Logout</span>
                 </a>
 
-                <div class="h-px w-full bg-white/60 mb-1.5 <?= isset($_SESSION['user']) ? '' : 'hidden' ?>"></div>
+                <div class="h-px w-full bg-white/60 mb-1.5 <?= ($_SESSION['user']['role'] != 'guest') ? '' : 'hidden' ?>"></div>
 
             </nav>
         </aside>
@@ -89,7 +94,7 @@
         <!-- TOP -->
         <div class="pt-2.5 px-1 pb-[18px]">
             <div class="text-white font-semibold text-base">
-                Meja 6
+                Meja <?= isset($param) ? $param : 0 ?>
             </div>
         </div>
 
@@ -97,7 +102,7 @@
         <nav class="mt-1.5">
 
             <!-- ITEM -->
-            <button
+            <button onclick="const k = document.getElementById('cart'); k.classList.remove('hidden'); k.classList.add('flex');" hx-post="/mvcomp/" hx-target="#cart" hx-vals='{"idCheck": "keranjang"}'
                 id="navKeranjang"
                 type="button"
                 class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer">
@@ -119,41 +124,41 @@
             <a
                 id="navLogin"
                 href="/mvcomp/auth/login"
-                class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= isset($_SESSION['user']) ? 'hidden' : '' ?>">
+                class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= ($_SESSION['user']['role'] != 'guest') ? 'hidden' : '' ?>">
                 <i class="ph-bold ph-sign-in text-lg"></i>
                 <span>Login</span>
             </a>
 
-            <div class="h-px w-full bg-white/60 mb-1.5 <?= isset($_SESSION['user']) ? 'hidden' : '' ?>"></div>
+            <div class="h-px w-full bg-white/60 mb-1.5 <?= ($_SESSION['user']['role'] != 'guest') ? 'hidden' : '' ?>"></div>
 
             <!-- REGISTER -->
             <a
                 id="navRegister"
                 href="/mvcomp/auth/register"
-                class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= isset($_SESSION['user']) ? 'hidden' : '' ?>">
+                class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= ($_SESSION['user']['role'] != 'guest') ? 'hidden' : '' ?>">
                 <i class="ph-bold ph-sign-in text-lg"></i>
                 <span>Register</span>
             </a>
 
-            <div class="h-px w-full bg-white/60 mb-1.5 <?= isset($_SESSION['user']) ? 'hidden' : '' ?>"></div>
+            <div class="h-px w-full bg-white/60 mb-1.5 <?= ($_SESSION['user']['role'] != 'guest') ? 'hidden' : '' ?>"></div>
 
             <!-- Logout -->
             <a
                 id="navLogout"
                 href="/mvcomp/auth/logout"
-                class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= isset($_SESSION['user']) ? '' : 'hidden' ?>">
+                class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= ($_SESSION['user']['role'] == 'guest') ? 'hidden' : '' ?>">
                 <i class="ph-bold ph-sign-in text-lg"></i>
                 <span>Logout</span>
             </a>
 
-            <div class="h-px w-full bg-white/60 mb-1.5 <?= isset($_SESSION['user']) ? '' : 'hidden' ?>"></div>
+            <div class="h-px w-full bg-white/60 mb-1.5 <?= ($_SESSION['user']['role'] != 'guest') ? '' : 'hidden' ?>"></div>
 
         </nav>
     </aside>
     <div class="flex flex-col w-full max-h-dvh overflow-hidden overflow-y-auto no-scrollbar mx-2 md:mx-7 lg:mx-14 pt-7 relative">
         <header class="flex flex-col items-center gap-5 relative">
             <button id="sidebarToggle" class="absolute lg:hidden -top-3 left-0 p-2 cursor-pointer hover:scale-105 transform transition-all duration-150 active:scale-95 active:shadow-inner"><i class="ph-bold ph-list text-[1.8rem]"></i></button>
-            <span class="font-semibold text-sm md:text-base lg:hidden">Meja 6</span>
+            <span class="font-semibold text-sm md:text-base lg:hidden">Meja <?= isset($param) ? $param : 0 ?></span>
             <form
                 hx-post="/mvcomp/"
                 hx-target="#menu"
@@ -164,6 +169,19 @@
                 </button>
             </form>
         </header>
+
+        <?php foreach ($orderHistory as $order): ?>
+            <div class="bg-v5 rounded-lg w-fit p-5 mr-5 mb-5">
+                <div class="flex justify-between gap-7">
+                    <p class="text-xs font-bold">Order ID: <?= $order['order_id'] ?></p>
+                    <span class="px-2 py-0.5 bg-v2/10 rounded-full text-xs font-medium text-v2 w-fit"><?= $order['status'] ?></span>
+                </div>
+                <p class="text-xs font-light">Waktu: <?= $order['created_at'] ?></p>
+                <hr class="my-2 opacity-35">
+                <p class="text-xs font-normal">Total:</p>
+                <p class="text-sm font-bold"><?= number_format($order['total']) ?></p>
+            </div>
+        <?php endforeach; ?>
 
         <div id="category" class="flex flex-nowrap gap-4 md:gap-7 items-center mb-2">
             <button hx-post="/mvcomp/" hx-target="#menu" hx-vals='{"id": ""}' name="category" type="button" class="bg-v1 text-xs md:text-sm  hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 md:px-8 px-6 py-1.5 md:py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">Semua</button>
@@ -178,6 +196,11 @@
                 class="mt-2.5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-10">
                 <?php include __DIR__ . '/listMenu.php';
                 ?>
+                <div id="cookie" class="hidden"></div>
+                <div
+                    id="cart"
+                    onclick=" this.classList.add('hidden'); this.classList.remove('flex');"
+                    class="fixed inset-0 z-50 w-full h-full hidden bg-v3/40"></div>
             </div>
             <div
                 id="detailMenu"
@@ -189,8 +212,8 @@
             </div>
         </main>
         <div id="action" class="flex pb-7 pt-4 gap-7 bg-v5 sticky bottom-0 ">
-            <button hx-post="/mvcomp/" hx-target="#menu" hx-vals='{"id": "keranjang"}' name="actionMenu" type="button" class="border-2 border-v1 bg-v5 text-v1 text-base w-full hover:bg-v1 hover:text-v5 shadow-sm/40 rounded-xl px-8 py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">keranjang</button>
-            <button hx-post="/mvcomp/" hx-target="#menu" hx-vals='{"id": "bayar"}' name="actionMenu" type="button" class="w-full text-base bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 px-8 py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">bayar</button>
+            <button onclick="const f = document.getElementById('cart'); f.classList.remove('hidden'); f.classList.add('flex');" hx-post="/mvcomp/" hx-target="#cart" hx-vals='{"idCheck": "keranjang"}' name="actionMenu" type="button" class="border-2 border-v1 bg-v5 text-v1 text-base w-full hover:bg-v1 hover:text-v5 shadow-sm/40 rounded-xl px-8 py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">keranjang</button>
+            <button hx-post="/mvcomp/kasir" hx-target="#menu" hx-vals='{"bayar": 1 }' name="actionMenu" type="button" class="w-full text-base bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 px-8 py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">bayar</button>
         </div>
     </div>
 </div>

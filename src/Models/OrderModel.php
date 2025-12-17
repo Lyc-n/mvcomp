@@ -26,8 +26,7 @@ class OrderModel
                 user_id INT NULL,
                 status ENUM('open', 'paid', 'cancelled') DEFAULT 'open',
                 total DECIMAL(10,2) DEFAULT 0,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (table_id) REFERENCES tables(id));";
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);";
         $this->db->exec($sql);
     }
 

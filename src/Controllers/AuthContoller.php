@@ -39,6 +39,7 @@ class AuthContoller extends BaseController
                 if (!$data['username'] || !$data['email'] || !$data['password']) {
                     http_response_code(422);
                     echo 'Data tidak lengkap';
+                    header('location: /mvcomp/auth/register');
                     exit;
                 }
 
@@ -58,6 +59,7 @@ class AuthContoller extends BaseController
                 if (!$data['username'] || !$data['email'] || !$data['password']) {
                     http_response_code(422);
                     echo 'Data tidak lengkap';
+                    header('location: /mvcomp/auth/login');
                     exit;
                 }
 
@@ -77,9 +79,16 @@ class AuthContoller extends BaseController
                     'permissions' => []
                 ];
 
-                header('location: /mvcomp/');
+                if($user['role'] == 'guest' || $user['role'] == 'member'){
+                    header('location: /mvcomp/');
+                } else if($user['role'] == 'kasir') {
+                    header('location: /mvcomp/kasir');
+                } else{
+                    header('location: /mvcomp/admin/panel');
+                }
                 exit;
             default:
+                exit;
         }
     }
 
