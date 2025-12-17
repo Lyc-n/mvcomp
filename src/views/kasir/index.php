@@ -115,6 +115,6 @@
                 <?php include __DIR__ . '/cart.php'  ?>
             </div>
         </nav>
-        <button  name="actionMenu" type="button" class="w-full my-5 text-base bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 px-8 py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">bayar</button>
+        <button hx-post="/mvcomp/kasir" hx-target="#menu" hx-vals='{"bayar": 1 }' name="actionMenu" type="button" class="w-full my-5 text-base bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 px-8 py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">bayar</button>
     </aside>
-</div>hx-post="/mvcomp/kasir" hx-target="#menu" hx-vals='{"bayar": 1 }'
+</div>

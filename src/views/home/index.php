@@ -170,18 +170,20 @@
             </form>
         </header>
 
-        <?php foreach ($orderHistory as $order): ?>
-            <div class="bg-v5 rounded-lg w-fit p-5 mr-5 mb-5">
-                <div class="flex justify-between gap-7">
-                    <p class="text-xs font-bold">Order ID: <?= $order['order_id'] ?></p>
-                    <span class="px-2 py-0.5 bg-v2/10 rounded-full text-xs font-medium text-v2 w-fit"><?= $order['status'] ?></span>
+        <div class="flex">
+            <?php foreach ($orderHistory as $order): ?>
+                <div class="bg-v5 rounded-lg w-fit p-5 mr-5 mb-5">
+                    <div class="flex justify-between gap-7">
+                        <p class="text-xs font-bold">Order ID: <?= $order['order_id'] ?></p>
+                        <span class="px-2 py-0.5 bg-v2/10 rounded-full text-xs font-medium text-v2 w-fit"><?= $order['status'] ?></span>
+                    </div>
+                    <p class="text-xs font-light">Waktu: <?= $order['created_at'] ?></p>
+                    <hr class="my-2 opacity-35">
+                    <p class="text-xs font-normal">Total:</p>
+                    <p class="text-sm font-bold"><?= number_format($order['total']) ?></p>
                 </div>
-                <p class="text-xs font-light">Waktu: <?= $order['created_at'] ?></p>
-                <hr class="my-2 opacity-35">
-                <p class="text-xs font-normal">Total:</p>
-                <p class="text-sm font-bold"><?= number_format($order['total']) ?></p>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
 
         <div id="category" class="flex flex-nowrap gap-4 md:gap-7 items-center mb-2">
             <button hx-post="/mvcomp/" hx-target="#menu" hx-vals='{"id": ""}' name="category" type="button" class="bg-v1 text-xs md:text-sm  hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 md:px-8 px-6 py-1.5 md:py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">Semua</button>
