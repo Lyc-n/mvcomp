@@ -2,27 +2,22 @@
 session_start();
 
 require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/App/Config.php';
 
 use Mvcomp\Posapp\App\Route;
 use Mvcomp\Posapp\Controllers\AdminController;
 use Mvcomp\Posapp\Controllers\AuthContoller;
-use Mvcomp\Posapp\Controllers\HomeControlller;
+use Mvcomp\Posapp\Controllers\HomeController;
 use Mvcomp\Posapp\Controllers\KasirController;
 use Mvcomp\Posapp\Controllers\PaymentController;
 
 //Home Route
-Route::add("GET", "/", HomeControlller::class, 'index');
-//Home CRUD
-Route::add("POST", "/", HomeControlller::class, 'CRUD');
+Route::add("GET", "/", HomeController::class, 'index');
+Route::add("POST", "/", HomeController::class, 'CRUD');
 
 //Admin Route
 Route::add("GET", "/admin/panel", AdminController::class, "adminPanel", ['auth']);
-//Admin Menu
 Route::add("POST", "/admin/panel", AdminController::class, "adminPanelMenu");
-//Admin CRUD
-Route::add("POST", "/admin/add/user", AdminController::class, "adminCRUDUser");
-Route::add("POST", "/admin/add/product", AdminController::class, "adminCRUDProduct");
+Route::add("POST", "/admin/add", AdminController::class, "CRUD");
 
 //Authentication
 Route::add("GET", "/auth/login", AuthContoller::class, "login");

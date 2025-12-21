@@ -1,7 +1,7 @@
 <?php foreach ($menus as $menu): ?>
     <div class="relative">
         <div
-            hx-post="/mvcomp/"
+            hx-post="/"
             hx-trigger="click"
             hx-target="#notif"
             hx-vals='{"id": <?= htmlspecialchars($menu['id']) ?>}'
@@ -9,8 +9,8 @@
             onclick=" const f = document.getElementById('detailMenu'); f.classList.remove('hidden'); f.classList.add('flex');">
             <div class="">
                 <img
-                    src="/mvcomp/public/img/menu/<?= htmlspecialchars($menu['image']) ?>"
-                    alt="Mie Ayam"
+                    src="img/menu/<?= htmlspecialchars($menu['image']) ?>"
+                    alt="<?= htmlspecialchars($menu['name']) ?>"
                     class="w-[200px] aspect-square object-center object-cover hover:scale-105 transition-all duration-300 ease-in-out" />
             </div>
             <div class="text-base font-semibold px-4 py-2.5">
@@ -19,7 +19,7 @@
             </div>
         </div>
         <button
-            hx-post="/mvcomp/"
+            hx-post="/"
             hx-trigger="click"
             hx-target="#cookie"
             hx-vals='{"addCart": 1, "idProduct": <?= htmlspecialchars($menu['id']) ?>, "idTable": <?= $param ?>, "idUser": <?= $_SESSION['user']['id'] ?>}'

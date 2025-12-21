@@ -1,7 +1,7 @@
 <div class="flex w-full h-screen bg-v5">
     <aside class="min-w-fit max-w-12 h-full bg-linear-to-b/oklch from-v6 from-25% to-v1 py-3 flex flex-col gap-5">
         <div class="w-fit flex items-center gap-3 justify-center px-8">
-            <img src="/mvcomp/public/img/mainLogo.svg" alt="mainLogo" class="w-9">
+            <img src="/img/mainLogo.svg" alt="mainLogo" class="w-9">
             <div class="flex flex-col gap-0 items-center pt-1">
                 <h1 class="text-[1.3rem] leading-3">YUMMY</h1>
                 <p class="text-[0.6rem] text-amber-900">Nusantara Food</p>
@@ -10,7 +10,7 @@
         <div class="">
             <ul class="flex flex-col gap-3 overflow-hidden">
                 <li><button
-                        hx-post="/mvcomp/admin/panel"
+                        hx-post="/admin/panel"
                         hx-target="#menuInti"
                         hx-vals='{"id": "dashboard"}'
                         data-menu="dashboard"
@@ -23,7 +23,7 @@
                         type="button"
                         hx-target="#menuInti"
                         data-menu="users"
-                        hx-post="/mvcomp/admin/panel"
+                        hx-post="/admin/panel"
                         hx-vals='{"id": "users"}'
                         class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3 transform active:scale-95 active:shadow-inner">
                         <i class="ph-fill ph-users text-xl"></i>
@@ -33,7 +33,7 @@
                         type="button"
                         hx-target="#menuInti"
                         data-menu="products"
-                        hx-post="/mvcomp/admin/panel"
+                        hx-post="/admin/panel"
                         hx-vals='{"id": "products"}'
                         class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3 transform active:scale-95 active:shadow-inner">
                         <i class="ph-fill ph-bowl-steam text-xl"></i>
@@ -43,7 +43,7 @@
                         type="button"
                         hx-target="#menuInti"
                         data-menu="reports"
-                        hx-post="/mvcomp/admin/panel"
+                        hx-post="/admin/panel"
                         hx-vals='{"id": "reports"}'
                         class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3 transform active:scale-95 active:shadow-inner">
                         <i class="ph-fill ph-qr-code text-xl"></i>

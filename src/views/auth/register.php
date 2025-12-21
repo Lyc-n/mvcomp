@@ -8,7 +8,7 @@
     <form 
         class="w-[420px] max-w-[90%] flex flex-col gap-10 bg-linear-to-br from-v5 to-v6 rounded-xl px-7 py-8 shadow-sm/90 animate-slideFade"
         method="post"
-        action="/mvcomp/auth/crud">
+        action="/auth/crud">
 
         <!-- Header -->
         <div class="mb-7">
@@ -41,7 +41,7 @@
                 class=" text-base bg-linear-to-br from-v1 to-v2 bg-size-[200%_200%] bg-left hover:bg-right shadow-sm/40 rounded-xl text-v5 px-8 py-2.5 transform transition-all duration-250 active:scale-95 active:shadow-inner">
                 Sign up
             </button>
-            <label for="daftar" class="text-xs text-center text-v3/50 font-semibold">Sudah punya akun? <a id="daftar" href="/mvcomp/auth/login" class="italic text-v2/65">Masuk di sini</a></label>
+            <label for="daftar" class="text-xs text-center text-v3/50 font-semibold">Sudah punya akun? <a id="daftar" href="/auth/login" class="italic text-v2/65">Masuk di sini</a></label>
         </div>
 
     </form>

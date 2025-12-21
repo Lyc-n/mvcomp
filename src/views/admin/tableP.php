@@ -23,7 +23,7 @@
                     <td class="px-4 py-2 text-right">
                         <div class="">
                             <button
-                                hx-post="/mvcomp/admin/add/product"
+                                hx-post="/admin/add/product"
                                 hx-target="#table"
                                 hx-confirm="Yakin ingin menghapus product ini?"
                                 type="button"
@@ -33,7 +33,7 @@
                                 <i class="mr-1 ph-bold ph-x text-v5 bg-v2 py-1.5 px-2.5 rounded-md"></i>
                             </button>
                             <button
-                                hx-post="/mvcomp/admin/add/product"
+                                hx-post="/admin/add/product"
                                 hx-target="#notif"
                                 hx-swap="outerHTML"
                                 hx-vals='{"id": <?= $product["id"] ?>}'

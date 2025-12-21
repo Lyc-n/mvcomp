@@ -4,7 +4,7 @@
     class="fixed inset-0 z-50 w-full h-full justify-center items-center bg-v3/40 flex">
     <div id="notif"></div>
     <form
-        hx-post="/mvcomp/admin/add/user"
+        hx-post="/admin/add/user"
         hx-target="#notif"
         onclick="event.stopPropagation()"
         class="flex w-1/5 shadow-xl/20 h-fit flex-col gap-1.5 px-7 py-6 bg-v5 rounded-lg">

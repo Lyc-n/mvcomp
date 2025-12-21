@@ -27,7 +27,7 @@
             <nav class="mt-1.5">
 
                 <!-- ITEM -->
-                <button onclick="const p = document.getElementById('cart'); p.classList.remove('hidden'); p.classList.add('flex');" hx-post="/mvcomp/" hx-target="#cart" hx-vals='{"idCheck": "keranjang"}'
+                <button onclick="const p = document.getElementById('cart'); p.classList.remove('hidden'); p.classList.add('flex');" hx-post="/" hx-target="#cart" hx-vals='{"idCheck": "keranjang"}'
                     id="navKeranjang"
                     type="button"
                     class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer">
@@ -48,7 +48,7 @@
                 <!-- LOGIN -->
                 <a
                     id="navLogin"
-                    href="/mvcomp/auth/login"
+                    href="/auth/login"
                     class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= ($_SESSION['user']['role'] != 'guest') ? 'hidden' : '' ?>">
                     <i class="ph-bold ph-sign-in text-lg"></i>
                     <span>Login</span>
@@ -59,7 +59,7 @@
                 <!-- REGISTER -->
                 <a
                     id="navRegister"
-                    href="/mvcomp/auth/register"
+                    href="/auth/register"
                     class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= ($_SESSION['user']['role'] != 'guest') ? 'hidden' : '' ?>">
                     <i class="ph-bold ph-sign-in text-lg"></i>
                     <span>Register</span>
@@ -70,7 +70,7 @@
                 <!-- Logout -->
                 <a
                     id="navLogout"
-                    href="/mvcomp/auth/logout"
+                    href="/auth/logout"
                     class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= ($_SESSION['user']['role'] == 'guest') ? 'hidden' : '' ?>">
                     <i class="ph-bold ph-sign-in text-lg"></i>
                     <span>Logout</span>
@@ -102,7 +102,7 @@
         <nav class="mt-1.5">
 
             <!-- ITEM -->
-            <button onclick="const k = document.getElementById('cart'); k.classList.remove('hidden'); k.classList.add('flex');" hx-post="/mvcomp/" hx-target="#cart" hx-vals='{"idCheck": "keranjang"}'
+            <button onclick="const k = document.getElementById('cart'); k.classList.remove('hidden'); k.classList.add('flex');" hx-post="/" hx-target="#cart" hx-vals='{"idCheck": "keranjang"}'
                 id="navKeranjang"
                 type="button"
                 class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer">
@@ -123,7 +123,7 @@
             <!-- LOGIN -->
             <a
                 id="navLogin"
-                href="/mvcomp/auth/login"
+                href="/auth/login"
                 class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= ($_SESSION['user']['role'] != 'guest') ? 'hidden' : '' ?>">
                 <i class="ph-bold ph-sign-in text-lg"></i>
                 <span>Login</span>
@@ -134,7 +134,7 @@
             <!-- REGISTER -->
             <a
                 id="navRegister"
-                href="/mvcomp/auth/register"
+                href="/auth/register"
                 class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= ($_SESSION['user']['role'] != 'guest') ? 'hidden' : '' ?>">
                 <i class="ph-bold ph-sign-in text-lg"></i>
                 <span>Register</span>
@@ -145,7 +145,7 @@
             <!-- Logout -->
             <a
                 id="navLogout"
-                href="/mvcomp/auth/logout"
+                href="/auth/logout"
                 class="w-full text-left bg-transparent border-0 text-white py-3 px-1.5 text-sm cursor-pointer flex items-center gap-2.5 mt-3 <?= ($_SESSION['user']['role'] == 'guest') ? 'hidden' : '' ?>">
                 <i class="ph-bold ph-sign-in text-lg"></i>
                 <span>Logout</span>
@@ -160,7 +160,7 @@
             <button id="sidebarToggle" class="absolute lg:hidden -top-3 left-0 p-2 cursor-pointer hover:scale-105 transform transition-all duration-150 active:scale-95 active:shadow-inner"><i class="ph-bold ph-list text-[1.8rem]"></i></button>
             <span class="font-semibold text-sm md:text-base lg:hidden">Meja <?= isset($param) ? $param : 0 ?></span>
             <form
-                hx-post="/mvcomp/"
+                hx-post="/"
                 hx-target="#menu"
                 class="relative w-full">
                 <input name="search" type="text" placeholder="search" class="w-full border bg-v5 border-v3/40 py-2 pr-4 pl-10 rounded-xl text-sm focus:ring focus:ring-v3/40 focus:outline-0">
@@ -186,17 +186,17 @@
         </div>
 
         <div id="category" class="flex flex-nowrap gap-4 md:gap-7 items-center mb-2">
-            <button hx-post="/mvcomp/" hx-target="#menu" hx-vals='{"id": ""}' name="category" type="button" class="bg-v1 text-xs md:text-sm  hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 md:px-8 px-6 py-1.5 md:py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">Semua</button>
-            <button hx-post="/mvcomp/" hx-target="#menu" hx-vals='{"id": "makanan"}' name="category" type="button" class=" text-xs md:text-sm bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 md:px-8 px-6 py-1.5 md:py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">Makanan</button>
-            <button hx-post="/mvcomp/" hx-target="#menu" hx-vals='{"id": "minuman"}' name="category" type="button" class=" text-xs md:text-sm bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 md:px-8 px-6 py-1.5 md:py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">Minuman</button>
-            <button hx-post="/mvcomp/" hx-target="#menu" hx-vals='{"id": "kudapan"}' name="category" type="button" class=" text-xs md:text-sm bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 md:px-8 px-6 py-1.5 md:py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">Kudapan</button>
+            <button hx-post="/" hx-target="#menu" hx-vals='{"id": ""}' name="category" type="button" class="bg-v1 text-xs md:text-sm  hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 md:px-8 px-6 py-1.5 md:py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">Semua</button>
+            <button hx-post="/" hx-target="#menu" hx-vals='{"id": "makanan"}' name="category" type="button" class=" text-xs md:text-sm bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 md:px-8 px-6 py-1.5 md:py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">Makanan</button>
+            <button hx-post="/" hx-target="#menu" hx-vals='{"id": "minuman"}' name="category" type="button" class=" text-xs md:text-sm bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 md:px-8 px-6 py-1.5 md:py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">Minuman</button>
+            <button hx-post="/" hx-target="#menu" hx-vals='{"id": "kudapan"}' name="category" type="button" class=" text-xs md:text-sm bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 md:px-8 px-6 py-1.5 md:py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">Kudapan</button>
         </div>
 
         <main class="flex w-full justify-center pb-5">
             <div
                 id="menu"
                 class="mt-2.5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-10">
-                <?php include __DIR__ . '/listMenu.php';
+                <?php include __DIR__ . '/../components/listMenu.php';
                 ?>
                 <div id="cookie" class="hidden"></div>
                 <div
@@ -214,8 +214,8 @@
             </div>
         </main>
         <div id="action" class="flex pb-7 pt-4 gap-7 bg-v5 sticky bottom-0 ">
-            <button onclick="const f = document.getElementById('cart'); f.classList.remove('hidden'); f.classList.add('flex');" hx-post="/mvcomp/" hx-target="#cart" hx-vals='{"idCheck": "keranjang"}' name="actionMenu" type="button" class="border-2 border-v1 bg-v5 text-v1 text-base w-full hover:bg-v1 hover:text-v5 shadow-sm/40 rounded-xl px-8 py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">keranjang</button>
-            <button hx-post="/mvcomp/kasir" hx-target="#menu" hx-vals='{"bayar": 1 }' name="actionMenu" type="button" class="w-full text-base bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 px-8 py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">bayar</button>
+            <button onclick="const f = document.getElementById('cart'); f.classList.remove('hidden'); f.classList.add('flex');" hx-post="/" hx-target="#cart" hx-vals='{"idCheck": "keranjang"}' name="actionMenu" type="button" class="border-2 border-v1 bg-v5 text-v1 text-base w-full hover:bg-v1 hover:text-v5 shadow-sm/40 rounded-xl px-8 py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">keranjang</button>
+            <button hx-post="/kasir" hx-target="#menu" hx-vals='{"bayar": 1 }' name="actionMenu" type="button" class="w-full text-base bg-v1 hover:bg-orange-500 shadow-sm/40 rounded-xl text-v5 px-8 py-2 transform transition-all duration-250 active:scale-95 active:shadow-inner">bayar</button>
         </div>
     </div>
 </div>

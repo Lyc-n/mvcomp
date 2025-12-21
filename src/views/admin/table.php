@@ -23,7 +23,7 @@
                     <td class="px-4 py-2 text-right">
                         <div>
                             <button
-                                hx-post="/mvcomp/admin/add/user"
+                                hx-post="/admin/add/user"
                                 hx-target="#table"
                                 hx-confirm="Yakin ingin menghapus user ini?"
                                 type="button"

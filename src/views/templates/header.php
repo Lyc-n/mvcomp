@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($title) ? $title : 'Document' ?></title>
-    <link href="<?= $_ENV['BASE_ASSETS'] . 'css/styles.css' ?>" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
     <link
         rel="stylesheet"
         type="text/css"

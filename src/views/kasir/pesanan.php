@@ -12,7 +12,7 @@
                     <div class="flex justify-between items-center mb-3">
                         <p class="text-sm font-bold text-v3">Order ID: <?= $order['order_id'] ?></p>
 
-                        <form hx-post="/mvcomp/kasir/upStatus" hx-target="closest div.bg-v5" hx-swap="outerHTML">
+                        <form hx-post="/kasir/upStatus" hx-target="closest div.bg-v5" hx-swap="outerHTML">
                             <input type="hidden" name="order_id" value="<?= $order['order_id'] ?>">
                             <select name="status" class="px-3 py-1 rounded-full text-xs font-semibold cursor-pointer"
                                 onchange="this.form.submit()">
