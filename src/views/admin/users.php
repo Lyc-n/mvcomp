@@ -4,6 +4,7 @@
 
 <div id="notif"></div>
 
+<!-- Filter Modal -->
 <div
     id="filterModal"
     onclick="
@@ -13,7 +14,7 @@
     class="fixed inset-0 z-50 w-full h-full hidden">
     <div class="flex flex-col w-48 rounded-md shadow-sm/65 shadow-v3 border-v3/40 bg-v5 py-5 absolute right-15 top-30">
         <button
-            hx-post="/mvcomp/admin/add/user"
+            hx-post="/admin/add"
             hx-target="#table"
             hx-swap=""
             type="button"
@@ -21,7 +22,7 @@
             name="filterUser"
             class="px-6 py-2 hover:bg-v1 hover:text-white transform transition-all duration-150 active:scale-95 active:shadow-inner text-sm text-left">Admin</button>
         <button
-            hx-post="/mvcomp/admin/add/user"
+            hx-post="/admin/add"
             hx-target="#table"
             hx-swap=""
             type="button"
@@ -29,7 +30,7 @@
             name="filterUser"
             class="px-6 py-2 hover:bg-v1 hover:text-white transform transition-all duration-150 active:scale-95 active:shadow-inner text-sm text-left">Kasir</button>
         <button
-            hx-post="/mvcomp/admin/add/user"
+            hx-post="/admin/add"
             hx-target="#table"
             hx-swap=""
             type="button"
@@ -37,7 +38,7 @@
             name="filterUser"
             class="px-6 py-2 hover:bg-v1 hover:text-white transform transition-all duration-150 active:scale-95 active:shadow-inner text-sm text-left">Member</button>
         <button
-            hx-post="/mvcomp/admin/add/user"
+            hx-post="/admin/add"
             hx-target="#table"
             hx-swap=""
             type="button"
@@ -47,6 +48,7 @@
     </div>
 </div>
 
+<!-- Add User -->
 <div
     id="addModal"
     onclick="
@@ -58,7 +60,7 @@
         hx-post="/admin/add"
         hx-target="#notif"
         onclick="event.stopPropagation()"
-        class="flex w-md shadow-xl/20 h-fit flex-col gap-1.5 px-7 py-6 bg-v5 rounded-lg">
+        class="flex w-sm shadow-xl/20 h-fit flex-col gap-1.5 px-7 py-6 bg-v5 rounded-lg">
         <label class="text-sm font-semibold" for="username">Username <span class="text-rose-600">*</span></label>
         <input
             class="text-sm bg-v5 shadow-md mb-2 border border-v3/20 rounded-md px-4 py-2 focus:ring focus:ring-v3/40 focus:outline-0"
@@ -98,3 +100,4 @@
         </button>
     </form>
 </div>
+

@@ -1,6 +1,5 @@
-<div id="<?= $id ?? 'table' ?>">
-    <div
-        class="flex flex-col mx-7 border rounded-lg shadow-sm/20 border-gray-400 overflow-hidden overflow-y-auto no-scrollbar bg-v5">
+<div class="flex flex-col border rounded-lg shadow-sm/20 border-gray-400 overflow-y-auto bg-v5 no-scrollbar">
+    <div id="table" class="w-full">
         <?php if (empty($rows)): ?>
             <div class="p-6 text-center text-gray-500">
                 Data tidak ditemukan
@@ -25,40 +24,42 @@
                     <?php foreach ($rows as $row): ?>
                         <tr class="border-0 last:border-0">
                             <?php foreach ($headers as $header): ?>
-                                <td class="text-xs md:text-sm px-4 py-2 <?= $header['class'] ?? '' ?>">
-                                    <?php
-                                    $value = $row[$header['key']] ?? null;
+                                <td class="">
+                                    <div class="text-xs md:text-sm px-4 py-2 <?= $header['class'] ?? '' ?>">
+                                        <?php
+                                        $value = $row[$header['key']] ?? null;
 
-                                    if (isset($header['formatter']) && is_callable($header['formatter'])) {
-                                        echo $header['formatter']($value, $row);
-                                    } else {
-                                        echo htmlspecialchars($value ?? 'N/A');
-                                    }
-                                    ?>
+                                        if (isset($header['formatter']) && is_callable($header['formatter'])) {
+                                            echo $header['formatter']($value, $row);
+                                        } else {
+                                            echo htmlspecialchars($value ?? 'N/A');
+                                        }
+                                        ?>
+                                    </div>
                                 </td>
                             <?php endforeach; ?>
                             <td class="md:px-4 md:py-2 px-1.5 py-0.5 text-right">
-                                <div class="inline-flex gap-2">
+                                <div class="flex justify-center items-center gap-1 flex-row md:items-center md:gap-2">
                                     <button
                                         hx-post="/admin/add"
                                         hx-target="#notif"
                                         hx-confirm="Yakin ingin menghapus <?= isset($row['username']) ? $row['username'] : $row['name'] ?>"
                                         name="deleteItems"
-                                        value="<?= isset($row['username']) ? $row['username'] : $row['name'] ?>"
+                                        value="<?= $label = $row['username'] ?? $row['name'] ?? $row['status'] ?? 'Unknown'; ?>"
                                         type="button"
                                         class="transform transition-all duration-150 active:scale-95">
-                                        <i class="mr-1 ph-bold ph-x text-v5 bg-v2 md:py-1.5 md:px-2.5 py-0.5 px-1.5 text-xs rounded-sm md:rounded-md"></i>
+                                        <i class="mr-1 ph-bold ph-x text-v5 bg-v2 md:py-1.5 md:px-2.5 py-1 px-1.5 text-xs rounded-sm md:rounded-md"></i>
                                     </button>
 
                                     <button
                                         hx-post="/admin/add"
-                                        hx-target="#notif"
-                                        hx-swap="outerHTML"
-                                        hx-vals='{"id": <?= $user["id"] ?>}'
+                                        hx-target="body"
+                                        hx-swap="beforeend"
+                                        hx-vals='{"id": "<?= isset($row['username']) ? $row['username'] : $row['name'] ?>"}'
                                         name="loadEditItems"
                                         type="button"
-                                        class="transform transition-all duration-150 active:scale-95">
-                                        <i class="ml-1 ph-bold ph-pencil-simple-line bg-v7 md:py-1.5 md:px-2.5 py-0.5 px-1.5 text-xs rounded-sm md:rounded-md"></i>
+                                        class=" transform transition-all duration-150 active:scale-95">
+                                        <i class="ml-1 ph-bold ph-pencil-simple-line bg-v7 md:py-1.5 md:px-2.5 py-1 px-1.5 text-xs rounded-sm md:rounded-md"></i>
                                     </button>
                                 </div>
                             </td>

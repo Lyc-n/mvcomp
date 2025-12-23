@@ -1,7 +1,7 @@
 <form
     hx-post="/admin/add"
-    hx-target="#<?= $id ?? 'table' ?>"
-    class="flex w-full h-fit p-7 gap-5">
+    hx-target="#table"
+    class="flex w-full h-fit gap-5">
     <div class="relative w-full">
         <input name="search" type="text" placeholder="search" class="w-full border border-v3/40 py-2 pr-4 pl-10 rounded-lg text-sm focus:ring focus:ring-v3/40 focus:outline-0">
         <button type="submit" name="searchButton" class="h-fit cursor-pointer">

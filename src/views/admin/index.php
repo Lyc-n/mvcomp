@@ -42,9 +42,9 @@
                 <li><button
                         type="button"
                         hx-target="#menuInti"
-                        data-menu="reports"
+                        data-menu="qr_tokens"
                         hx-post="/admin/panel"
-                        hx-vals='{"id": "reports"}'
+                        hx-vals='{"id": "qr_tokens"}'
                         class="menu-btn flex w-full gap-3 justify-between items-center hover:scale-105 transition-all duration-300 ease-in-out px-8 py-3 transform active:scale-95 active:shadow-inner">
                         <i class="ph-fill ph-qr-code text-xl"></i>
                         <p class="w-full text-left text-sm">QR</p>
@@ -60,7 +60,7 @@
             </div>
             <div id="profile" class="aspect-square cursor-pointer h-full bg-[url(../img/samplePP.jpg)] bg-cover bg-center bg-no-repeat rounded-full shadow-md"></div>
         </nav>
-        <div id="menuInti" class="flex w-full h-full bg-linear-to-br/oklch from-v5 from-60% to-v6 flex-col overflow-hidden">
+        <div id="menuInti" class=" pb-16 px-7 pt-7 flex w-full h-full bg-linear-to-br/oklch from-v5 from-60% to-v6 flex-col overflow-hidden">
 
         </div>
     </main>

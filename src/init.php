@@ -15,7 +15,7 @@ Route::add("GET", "/", HomeController::class, 'index');
 Route::add("POST", "/", HomeController::class, 'CRUD');
 
 //Admin Route
-Route::add("GET", "/admin/panel", AdminController::class, "adminPanel", ['auth']);
+Route::add("GET", "/admin/panel", AdminController::class, "adminPanel");
 Route::add("POST", "/admin/panel", AdminController::class, "adminPanelMenu");
 Route::add("POST", "/admin/add", AdminController::class, "CRUD");
 
