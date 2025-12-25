@@ -5,7 +5,7 @@
                 Data tidak ditemukan
             </div>
         <?php else: ?>
-            <table class="table-auto border-collapse w-full relative">
+            <table class="table-auto collapse border-collapse w-full relative">
                 <thead class="sticky top-0">
                     <tr class="border-b border-gray-400 bg-v6">
                         <?php foreach ($headers as $header): ?>
@@ -39,16 +39,16 @@
                                 </td>
                             <?php endforeach; ?>
                             <td class="md:px-4 md:py-2 px-1.5 py-0.5 text-right">
-                                <div class="flex justify-center items-center gap-1 flex-row md:items-center md:gap-2">
+                                <div class="flex justify-center items-center gap-1 col md:items-center md:gap-2">
                                     <button
                                         hx-post="/admin/add"
                                         hx-target="#notif"
-                                        hx-confirm="Yakin ingin menghapus <?= isset($row['username']) ? $row['username'] : $row['name'] ?>"
+                                        hx-confirm="Yakin ingin menghapus <?= $label = $row['status'] ?? $row['role'] ?? $row['category'] ?? 'Unknown';?> dengan id <?= $row['id'] ?>"
                                         name="deleteItems"
-                                        value="<?= $label = $row['username'] ?? $row['name'] ?? $row['status'] ?? 'Unknown'; ?>"
+                                        hx-vals='{"id": "<?= $row['id'] ?>", "status": "<?= $label = $row['status'] ?? $row['role'] ?? $row['category'] ?? 'Unknown'; ?>"}'
                                         type="button"
-                                        class="transform transition-all duration-150 active:scale-95">
-                                        <i class="mr-1 ph-bold ph-x text-v5 bg-v2 md:py-1.5 md:px-2.5 py-1 px-1.5 text-xs rounded-sm md:rounded-md"></i>
+                                        class="transform transition-all duration-150 active:scale-95 justify-center items-center flex w-fit">
+                                        <i class="ph-bold ph-x text-v5 bg-v2 md:py-1.5 md:px-2.5 py-1 px-1.5 text-xs rounded-sm md:rounded-md"></i>
                                     </button>
 
                                     <button
@@ -58,8 +58,8 @@
                                         hx-vals='{"id": "<?= isset($row['username']) ? $row['username'] : $row['name'] ?>"}'
                                         name="loadEditItems"
                                         type="button"
-                                        class=" transform transition-all duration-150 active:scale-95">
-                                        <i class="ml-1 ph-bold ph-pencil-simple-line bg-v7 md:py-1.5 md:px-2.5 py-1 px-1.5 text-xs rounded-sm md:rounded-md"></i>
+                                        class=" transform transition-all duration-150 active:scale-95 flex justify-center items-center w-fit">
+                                        <i class="ph-bold ph-pencil-simple-line bg-v7 md:py-1.5 md:px-2.5 py-1 px-1.5 text-xs rounded-sm md:rounded-md"></i>
                                     </button>
                                 </div>
                             </td>

@@ -41,7 +41,7 @@ class AdminController extends BaseController
                 $id = 'products';
                 $rows = Product::all()->toArray();
                 $headers = TableConfig::productHeaders();
-                // $actions = ['actions'];
+                $actions = ['actions'];
                 require __DIR__ . '/../views/admin/products.php';
                 exit;
 
@@ -87,10 +87,15 @@ class AdminController extends BaseController
                 exit;
 
             case isset($_POST['addTable']):
+                $check = Table::where('qr_token', trim($_POST['qr_token'] ?? ''))->first();
+                if ($check) {
+                    http_response_code(409);
+                    exit;
+                }
                 $data = [
-                    'name'     => trim($_POST['tablename'] ?? '-'),
-                    'qr_token' => trim($_POST['qr_token'] ?? ''),
-                    'status'   => 'available',
+                    'name'     => trim($_POST['tablename'] ?? null),
+                    'qr_token' => trim($_POST['qr_token'] ?? null),
+                    'status'   => $_POST['status'] ?? 'available',
                 ];
 
                 if (!$data['name'] || !$data['qr_token']) {
@@ -171,14 +176,24 @@ class AdminController extends BaseController
                 exit;
 
             case isset($_POST['deleteItems']):
-                $name = $_POST['deleteItems'];
-                $user = User::where('username', $name)->first();
-                $product = Product::where('name', $name)->first();
+                $status = $_POST['status'];
+                $id = $_POST['id'];
+                $user = User::find($id);
+                $product = Product::find($id);
+                $table = Table::find($id);
 
-                if ($user) {
+                if ($status === 'available' || $status === 'occupied' || $status === 'reserved') {
+                    $data = [
+                        'name'     => null,
+                        'qr_token' => null,
+                        'status'   => 'available',
+                    ];
+                    $success = $table->update($data) ? true : false;
+                    echo $success ? "<script>alert('Table berhasil dihapus')</script>" : "<script>alert('Gagal menghapus table')</script>";
+                } else if ($status === 'admin' || $status === 'kasir' || $status === 'member' || $status === 'guest') {
                     $success = $user->delete() ? true : false;
                     echo $success ? "<script>alert('User berhasil dihapus')</script>" : "<script>alert('Gagal menghapus user')</script>";
-                } else if ($product) {
+                } else if ($status === 'makanan' || $status === 'minuman' || $status === 'kudapan') {
                     $success = $product->delete() ? true : false;
                     echo $success ? "<script>alert('Product berhasil dihapus')</script>" : "<script>alert('Gagal menghapus product')</script>";
                 } else {
@@ -306,16 +321,15 @@ class AdminController extends BaseController
         }
     }
 
-    public function QR(){
-
-    }
+    public function QR() {}
 }
 
-class checker {
+class checker
+{
     public static function isValidStatus(string $status)
     {
-        if($status == 'available' || $status == 'occupied' || $status == 'reserved'){
-            
+        if ($status == 'available' || $status == 'occupied' || $status == 'reserved') {
+            $id = Table::class;
         }
     }
 }
