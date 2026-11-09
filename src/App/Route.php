@@ -50,13 +50,13 @@ class Route
 
     public static function getUri()
     {
-        $uri = explode('/', rtrim(strtok($_SERVER['REQUEST_URI'], '?'), '/'));
-        foreach ($uri as $key => $value) {
-            if ($value === "" || $value === "mvcomp" || $value === "public") {
-                unset($uri[$key]);
-            }
+        $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
+        $base = rtrim((string) env('APP_BASE_PATH', ''), '/');
+
+        if ($base !== '' && ($path === $base || str_starts_with($path, $base . '/'))) {
+            $path = substr($path, strlen($base));
         }
-        $uri = implode('/', $uri);
-        return $uri;
+
+        return trim($path, '/');
     }
 }

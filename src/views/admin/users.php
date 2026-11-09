@@ -1,6 +1,6 @@
 <!-- Header: Search, Add, Filter -->
 <form
-    hx-post="/mvcomp/admin/add/user"
+    hx-post="<?= url('/admin/add/user') ?>"
     hx-target="#table"
     class="flex w-full h-fit p-7 gap-5">
     <div class="relative w-full">
@@ -40,7 +40,7 @@
         "
     class="fixed inset-0 z-50 w-full h-full justify-center items-center bg-v3/40 hidden">
     <form
-        hx-post="/mvcomp/admin/add/user"
+        hx-post="<?= url('/admin/add/user') ?>"
         hx-target="#notif"
         onclick="event.stopPropagation()"
         class="flex w-1/5 shadow-xl/20 h-fit flex-col gap-1.5 px-7 py-6 bg-v5 rounded-lg">
@@ -94,7 +94,7 @@
     class="fixed inset-0 z-50 w-full h-full hidden">
     <div class="flex flex-col w-48 rounded-md shadow-sm/65 shadow-v3 border-v3/40 bg-v5 py-5 absolute right-15 top-30">
         <button
-            hx-post="/mvcomp/admin/add/user"
+            hx-post="<?= url('/admin/add/user') ?>"
             hx-target="#table"
             hx-swap=""
             type="button"
@@ -102,7 +102,7 @@
             name="filterUser"
             class="px-6 py-2 hover:bg-v1 hover:text-white transform transition-all duration-150 active:scale-95 active:shadow-inner text-sm text-left">Admin</button>
         <button
-            hx-post="/mvcomp/admin/add/user"
+            hx-post="<?= url('/admin/add/user') ?>"
             hx-target="#table"
             hx-swap=""
             type="button"
@@ -110,7 +110,7 @@
             name="filterUser"
             class="px-6 py-2 hover:bg-v1 hover:text-white transform transition-all duration-150 active:scale-95 active:shadow-inner text-sm text-left">Kasir</button>
         <button
-            hx-post="/mvcomp/admin/add/user"
+            hx-post="<?= url('/admin/add/user') ?>"
             hx-target="#table"
             hx-swap=""
             type="button"
@@ -118,7 +118,7 @@
             name="filterUser"
             class="px-6 py-2 hover:bg-v1 hover:text-white transform transition-all duration-150 active:scale-95 active:shadow-inner text-sm text-left">Member</button>
         <button
-            hx-post="/mvcomp/admin/add/user"
+            hx-post="<?= url('/admin/add/user') ?>"
             hx-target="#table"
             hx-swap=""
             type="button"
@@ -153,7 +153,7 @@
                     <td class="px-4 py-2 text-right">
                         <div class="">
                             <button
-                                hx-post="/mvcomp/admin/add/user"
+                                hx-post="<?= url('/admin/add/user') ?>"
                                 hx-target="#table"
                                 hx-confirm="Yakin ingin menghapus user ini?"
                                 type="button"
@@ -163,7 +163,7 @@
                                 <i class="mr-1 ph-bold ph-x text-v5 bg-v2 py-1.5 px-2.5 rounded-md"></i>
                             </button>
                             <button
-                                hx-post="/mvcomp/admin/add/user"
+                                hx-post="<?= url('/admin/add/user') ?>"
                                 hx-target="#notif"
                                 hx-swap="outerHTML"
                                 hx-vals='{"id": <?= $user["id"] ?>}'

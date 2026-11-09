@@ -10,15 +10,26 @@ class AdminController extends BaseController
 {
     public function adminPanel()
     {
-        if ($_SESSION['user']['role'] != 'admin') {
-            header('location: /mvcomp/');
+        if (($_SESSION['user']['role'] ?? null) !== 'admin') {
+            header('location: ' . url('/'));
+            exit;
         }
         $data = ['title' => 'Admin Panel'];
         $this->render('admin/index', $data);
     }
 
+    private function requireAdmin(): void
+    {
+        if (($_SESSION['user']['role'] ?? null) !== 'admin') {
+            http_response_code(403);
+            exit('Forbidden');
+        }
+    }
+
     public function adminPanelMenu()
     {
+        $this->requireAdmin();
+
         $id = $_POST['id'] ?? '';
         switch (true) {
             case $id === 'dashboard':
@@ -49,6 +60,8 @@ class AdminController extends BaseController
 
     public function adminCRUDUser()
     {
+        $this->requireAdmin();
+
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);
             exit;
@@ -94,7 +107,7 @@ class AdminController extends BaseController
                 echo $success ? 'User berhasil dibuat' : 'Gagal membuat user';
 
                 header('HX-Trigger: userAdded');
-                header('HX-Redirect: /mvcomp/admin/panel');
+                header('HX-Redirect: ' . url('/admin/panel'));
                 exit;
 
             case isset($_POST['searchButton']) && $search !== '':
@@ -146,7 +159,7 @@ class AdminController extends BaseController
 
                 $model->updateUser($id, $data);
 
-                header('HX-Redirect: /mvcomp/admin/panel');
+                header('HX-Redirect: ' . url('/admin/panel'));
                 exit;
 
             default:
@@ -158,6 +171,8 @@ class AdminController extends BaseController
 
     public function adminCRUDProduct()
     {
+        $this->requireAdmin();
+
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);
             exit;
@@ -192,40 +207,56 @@ class AdminController extends BaseController
                 }
 
                 $file = $_FILES['image'];
-                $allowed = ['image/png', 'image/webp', 'image/jepg'];
-                if (!in_array($file['type'], $allowed)) {
-                    http_response_code(415);
-                    exit('Format gambar tidak didukung');
-                }
 
                 if ($file['size'] > 5 * 1024 * 1024) {
                     http_response_code(413);
                     exit('Ukuran gambar maksimal 5MB');
                 }
 
-                $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-                $filename = uniqid('product_', true) . '.' . $ext;
+                $mime = (new \finfo(FILEINFO_MIME_TYPE))->file($file['tmp_name']);
+                $allowed = [
+                    'image/png' => 'png',
+                    'image/jpeg' => 'jpg',
+                    'image/webp' => 'webp',
+                ];
 
-                $uploadPath = __DIR__ . '/../../public/img/';
-                if (!is_dir($uploadPath)) {
-                    mkdir($uploadPath, 0755, true);
+                if (!isset($allowed[$mime])) {
+                    http_response_code(415);
+                    exit('Format gambar tidak didukung');
                 }
 
-                var_dump($file);
-                move_uploaded_file($file['tmp_name'], $uploadPath . $filename);
+                $category = $_POST['category'] ?? '';
+                if (!in_array($category, ['makanan', 'minuman', 'kudapan'], true)) {
+                    http_response_code(422);
+                    exit('Kategori tidak valid');
+                }
+
+                $filename = uniqid('product_', true) . '.' . $allowed[$mime];
+
+                $uploadPath = __DIR__ . '/../../public/img/';
+                if (!is_dir($uploadPath) && !mkdir($uploadPath, 0755, true) && !is_dir($uploadPath)) {
+                    http_response_code(500);
+                    exit('Folder upload tidak dapat dibuat');
+                }
+
+                if (!move_uploaded_file($file['tmp_name'], $uploadPath . $filename)) {
+                    http_response_code(500);
+                    exit('Gagal menyimpan gambar');
+                }
 
                 $data = [
-                    'name' => $_POST['productname'],
-                    'price'       => $_POST['price'],
-                    'description' => $_POST['description'],
-                    'category'    => $_POST['category'],
-                    'image'       => $filename
+                    'name' => trim($_POST['productname'] ?? ''),
+                    'price' => $_POST['price'] ?? 0,
+                    'description' => $_POST['description'] ?? '',
+                    'category' => $category,
+                    'stock' => (int) ($_POST['stock'] ?? 0),
+                    'image' => $filename,
                 ];
 
                 $success = $model->createProduct($data);
-                echo $success ? 'User berhasil dibuat' : 'Gagal membuat user';
+                echo $success ? 'Produk berhasil dibuat' : 'Gagal membuat produk';
 
-                header('HX-Redirect: /mvcomp/admin/panel');
+                header('HX-Redirect: ' . url('/admin/panel'));
                 exit;
 
             case isset($_POST['searchButton']) && $search !== '':
@@ -268,6 +299,8 @@ class AdminController extends BaseController
                     'category' => trim($_POST['category'] ?? $defaultValue['category']),
                     'price' => $_POST['price'] ?: null,
                     'description' => $_POST['description'] ?? $defaultValue['description'],
+                    'stock' => $defaultValue['stock'],
+                    'image' => $defaultValue['image'],
                 ];
 
                 if (!$data['name'] || !$data['price']) {
@@ -277,7 +310,7 @@ class AdminController extends BaseController
 
                 $model->updateProduct($id, $data);
 
-                header('HX-Redirect: /mvcomp/admin/panel');
+                header('HX-Redirect: ' . url('/admin/panel'));
                 exit;
 
             default:

@@ -1,5 +1,2 @@
-<script src="/mvcomp/public/js/scripts.js"></script>
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="YOUR_CLIENT_KEY"></script>
-</body>
-
-</html>
+<script src="<?= asset('js/scripts.js') ?>"></script>
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?= htmlspecialchars((string) env('MIDTRANS_CLIENT_KEY', '')) ?>"></script>

@@ -4,10 +4,14 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Mvcomp\\": "/",
             "Mvcomp\\Posapp\\": "src/"
         },
-        "psr-4-dev": {
+        "files": [
+            "src/App/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Mvcomp\\Posapp\\Tests\\": "tests/"
         }
     },

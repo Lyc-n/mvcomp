@@ -12,7 +12,7 @@
                 console.log('Pembayaran berhasil:', result);
                 alert('Pembayaran sukses!');
                 // Hapus session pay & cart via HTMX atau redirect
-                window.location.href = '/mvcomp/payment/success';
+                window.location.href = '<?= url('/payment/success') ?>';
             },
             onPending: function(result) {
                 console.log('Pembayaran pending:', result);

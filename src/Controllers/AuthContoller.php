@@ -39,14 +39,14 @@ class AuthContoller extends BaseController
                 if (!$data['username'] || !$data['email'] || !$data['password']) {
                     http_response_code(422);
                     echo 'Data tidak lengkap';
-                    header('location: /mvcomp/auth/register');
+                    header('location: ' . url('/auth/register'));
                     exit;
                 }
 
                 $success = $model->createUser($data);
                 echo $success ? 'User berhasil dibuat' : 'Gagal membuat user';
 
-                header('location: /mvcomp/auth/login');
+                header('location: ' . url('/auth/login'));
                 exit;
             case isset($_POST['login']):
                 $data = [
@@ -59,7 +59,7 @@ class AuthContoller extends BaseController
                 if (!$data['username'] || !$data['email'] || !$data['password']) {
                     http_response_code(422);
                     echo 'Data tidak lengkap';
-                    header('location: /mvcomp/auth/login');
+                    header('location: ' . url('/auth/login'));
                     exit;
                 }
 
@@ -80,11 +80,11 @@ class AuthContoller extends BaseController
                 ];
 
                 if($user['role'] == 'guest' || $user['role'] == 'member'){
-                    header('location: /mvcomp/');
+                    header('location: ' . url('/'));
                 } else if($user['role'] == 'kasir') {
-                    header('location: /mvcomp/kasir');
+                    header('location: ' . url('/kasir'));
                 } else{
-                    header('location: /mvcomp/admin/panel');
+                    header('location: ' . url('/admin/panel'));
                 }
                 exit;
             default:
@@ -118,7 +118,7 @@ class AuthContoller extends BaseController
         }
 
         // Redirect ke halaman login
-        header('Location: /mvcomp/auth/login');
+        header('Location: ' . url('/auth/login'));
         exit;
     }
 }

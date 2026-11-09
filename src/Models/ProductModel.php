@@ -65,10 +65,11 @@ class ProductModel
 
     public function createProduct(array $data): bool
     {
-        $stmt = $this->db->prepare("INSERT INTO products (name, description, price, stock, image) VALUES (:name, :description, :price, :stock, :image)");
+        $stmt = $this->db->prepare("INSERT INTO products (name, description, price, category, stock, image) VALUES (:name, :description, :price, :category, :stock, :image)");
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':description', $data['description']);
         $stmt->bindParam(':price', $data['price']);
+        $stmt->bindParam(':category', $data['category']);
         $stmt->bindParam(':stock', $data['stock']);
         $stmt->bindParam(':image', $data['image']);
         return $stmt->execute();
@@ -76,10 +77,11 @@ class ProductModel
 
     public function updateProduct(int $id, array $data): bool
     {
-        $stmt = $this->db->prepare("UPDATE products SET name = :name, description = :description, price = :price, stock = :stock, image = :image WHERE id = :id");
+        $stmt = $this->db->prepare("UPDATE products SET name = :name, description = :description, price = :price, category = :category, stock = :stock, image = :image WHERE id = :id");
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':description', $data['description']);
         $stmt->bindParam(':price', $data['price']);
+        $stmt->bindParam(':category', $data['category']);
         $stmt->bindParam(':stock', $data['stock']);
         $stmt->bindParam(':image', $data['image']);
         $stmt->bindParam(':id', $id, \PDO::PARAM_INT);

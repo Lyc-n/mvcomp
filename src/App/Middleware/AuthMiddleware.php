@@ -9,11 +9,11 @@ class AuthMiddleware
         if (!isset($_SESSION['user'])) {
             // Jika request HTMX
             if (!empty($_SERVER['HTTP_HX_REQUEST'])) {
-                header('HX-Redirect: /mvcomp/auth/login');
+                header('HX-Redirect: ' . url('/auth/login'));
                 exit;
             }
 
-            header('Location: /mvcomp/auth/login');
+            header('Location: ' . url('/auth/login'));
             exit('Unauthorized');
         }
     }

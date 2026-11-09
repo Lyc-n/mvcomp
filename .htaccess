@@ -2,7 +2,7 @@
     RewriteEngine On
     
     Options -Indexes
-    RewriteRule ^(vendor|composer\.|app|src|config|storage|tests)\/ - [F]
+    RewriteRule ^(vendor|composer\.|app|src|config|storage|tests|scripts|deploy)\/ - [F]
     RewriteRule ^\.env$ - [F]
 
     RewriteCond %{REQUEST_FILENAME} !-f

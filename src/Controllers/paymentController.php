@@ -14,7 +14,7 @@ class PaymentController extends BaseController
     {
         // pastikan user login
         if (!isset($_SESSION['user'])) {
-            header('HX-Redirect: /mvcomp/auth/login');
+            header('HX-Redirect: ' . url('/auth/login'));
             exit;
         }
 
@@ -30,8 +30,8 @@ class PaymentController extends BaseController
         $cartData = $_SESSION['pay'][$userId]['cart'];
 
         // Konfigurasi Midtrans
-        Config::$serverKey = 'Mid-server-2ih_ywLSSuu8bBqBHieGynRh';  // ganti dengan server key Midtrans
-        Config::$isProduction = false;           // true jika live
+        Config::$serverKey = (string) env('MIDTRANS_SERVER_KEY', '');
+        Config::$isProduction = env_bool('MIDTRANS_IS_PRODUCTION');
         Config::$isSanitized = true;
         Config::$is3ds = true;
 
@@ -78,14 +78,14 @@ class PaymentController extends BaseController
         unset($_SESSION['pay'][$userId]);
 
         // Cart sudah dihapus sebelumnya saat checkout
-        echo "<script>window.location.href = '/mvcomp/';</script>";
+        echo "<script>window.location.href = '" . url('/') . "';</script>";
         exit;
     }
 
     private function saveOrderHistory()
     {
         if (!isset($_SESSION['user'])) {
-            header('HX-Redirect: /mvcomp/auth/login');
+            header('HX-Redirect: ' . url('/auth/login'));
             exit;
         }
 
@@ -130,7 +130,7 @@ class PaymentController extends BaseController
                     // Masukkan ke tabel orders
                     $stmtOrder = $this->db->prepare("INSERT INTO orders (order_id, user_id, table_id, status, total, created_at)
                                        VALUES (:order_id, :user_id, :table_id, :status, :total, :created_at)
-                                       ON DUPLICATE KEY UPDATE status = :status");
+                                       ON DUPLICATE KEY UPDATE status = VALUES(status)");
                     $stmtOrder->execute([
                         ':order_id' => $order['order_id'],
                         ':user_id' => $order['user_id'] ?? null,

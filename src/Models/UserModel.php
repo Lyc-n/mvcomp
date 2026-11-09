@@ -22,8 +22,8 @@ class UserModel
     {
         $sql = "CREATE TABLE IF NOT EXISTS users (
             id INT(11) AUTO_INCREMENT PRIMARY KEY,
-            username VARCHAR(50) NOT NULL,
-            email VARCHAR(100) NOT NULL,
+            username VARCHAR(50) NOT NULL UNIQUE,
+            email VARCHAR(100) NOT NULL UNIQUE,
             password VARCHAR(255) NOT NULL,
             role ENUM('admin', 'kasir', 'member', 'guest'),
             image VARCHAR(255),
@@ -106,12 +106,18 @@ class UserModel
 
     public function updateUser(int $id, array $data): bool
     {
-        $stmt = $this->db->prepare("UPDATE users SET username = :username, email = :email, password = :password, role = :role WHERE id = :id");
+        if (!empty($data['password'])) {
+            $stmt = $this->db->prepare("UPDATE users SET username = :username, email = :email, password = :password, role = :role WHERE id = :id");
+            $stmt->bindValue(':password', password_hash($data['password'], PASSWORD_BCRYPT));
+        } else {
+            $stmt = $this->db->prepare("UPDATE users SET username = :username, email = :email, role = :role WHERE id = :id");
+        }
+
         $stmt->bindParam(':username', $data['username']);
         $stmt->bindParam(':email', $data['email']);
-        $stmt->bindParam(':password', $data['password']);
         $stmt->bindParam(':role', $data['role']);
         $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+
         return $stmt->execute();
     }
 

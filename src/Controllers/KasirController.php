@@ -18,7 +18,7 @@ class KasirController extends BaseController
     public function index($params)
     {
         if ($_SESSION['user']['role'] != 'kasir') {
-            header('location: /mvcomp/');
+            header('location: ' . url('/'));
             exit;
         }
 
@@ -38,7 +38,7 @@ class KasirController extends BaseController
     public function pesanan()
     {
         if ($_SESSION['user']['role'] != 'kasir') {
-            header('location: /mvcomp/');
+            header('location: ' . url('/'));
             exit;
         }
 
@@ -194,14 +194,14 @@ class KasirController extends BaseController
             return $sum + ($item['priceProduct'] * $item['qty']);
         }, 0);
 
-        header('HX-Redirect: /mvcomp/kasir');
+        header('HX-Redirect: ' . url('/kasir'));
         exit;
     }
 
     private function checkout()
     {
         if (!isset($_SESSION['user'])) {
-            header('HX-Redirect: /mvcomp/auth/login');
+            header('HX-Redirect: ' . url('/auth/login'));
             exit;
         }
 
@@ -220,7 +220,7 @@ class KasirController extends BaseController
 
         unset($_SESSION['cart']);
 
-        header('HX-Redirect: /mvcomp/payment');
+        header('HX-Redirect: ' . url('/payment'));
         exit;
     }
 }

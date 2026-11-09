@@ -1,0 +1,36 @@
+services:
+  app:
+    build: .
+    container_name: mvcomp_app
+    ports:
+      - "8000:8000"
+    environment:
+      APP_URL: http://localhost:8000
+      APP_BASE_PATH: ""
+      BASE_ASSETS: http://localhost:8000/
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: mvcomp
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_SSL: "false"
+      ADMIN_USERNAME: admin
+      ADMIN_EMAIL: admin@example.com
+      ADMIN_PASSWORD: admin123
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mvcomp_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mvcomp
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

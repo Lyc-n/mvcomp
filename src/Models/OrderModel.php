@@ -12,27 +12,49 @@ class OrderModel
     {
         $this->db = Database::getConnection();
 
-        // periksa tabel ada atau tidak, jika tidak ada buat tabel
-        if (!$this->checkTableExists()) {
+        if (!$this->checkTableExists('orders')) {
             $this->createTableOrders();
+        }
+
+        if (!$this->checkTableExists('order_items')) {
+            $this->createTableOrderItems();
         }
     }
 
-    public function createTableOrders()
+    public function createTableOrders(): void
     {
-        $sql = "CREATE TABLE orders (
+        $sql = "CREATE TABLE IF NOT EXISTS orders (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                table_id INT NOT NULL,
+                order_id VARCHAR(64) NOT NULL UNIQUE,
+                table_id INT NULL,
                 user_id INT NULL,
-                status ENUM('open', 'paid', 'cancelled') DEFAULT 'open',
+                status ENUM('open', 'paid', 'cancelled', 'pending') DEFAULT 'open',
                 total DECIMAL(10,2) DEFAULT 0,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);";
         $this->db->exec($sql);
     }
 
-    public function checkTableExists(): bool
+    public function createTableOrderItems(): void
     {
-        $stmt = $this->db->query("SHOW TABLES LIKE 'orders'");
+        $sql = "CREATE TABLE IF NOT EXISTS order_items (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                order_id VARCHAR(64) NOT NULL,
+                nameProduct VARCHAR(150) NOT NULL,
+                priceProduct DECIMAL(10,2) NOT NULL,
+                qty INT NOT NULL DEFAULT 1,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                INDEX idx_order_items_order_id (order_id));";
+        $this->db->exec($sql);
+    }
+
+    public function checkTableExists(string $table = 'orders'): bool
+    {
+        $allowed = ['orders', 'order_items'];
+        if (!in_array($table, $allowed, true)) {
+            throw new \InvalidArgumentException('Nama tabel tidak valid');
+        }
+
+        $stmt = $this->db->query("SHOW TABLES LIKE '{$table}'");
         return $stmt->rowCount() > 0;
     }
 }

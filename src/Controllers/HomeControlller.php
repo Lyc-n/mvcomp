@@ -23,7 +23,7 @@ class HomeControlller extends BaseController
                 'permissions' => []
             ];
         } else if ($_SESSION['user']['role'] == 'kasir') {
-            echo "<script>window.location.href = '/mvcomp/kasir';</script>";
+            echo "<script>window.location.href = '" . url('/kasir') . "';</script>";
             exit;
         }
 
